@@ -1,9 +1,9 @@
 {
     "name": "typescript-library-boilerplate",
     "version": "0.0.0",
-    "main": "src/index.ts",
+    "main": "index.ts",
     "scripts": {
-        "start": "node build/src/main.js",
+        "start": "node build/index.js",
         "clean": "rimraf coverage build tmp",
         "prebuild": "npm run lint",
         "build": "tsc --declaration -p tsconfig.release.json",

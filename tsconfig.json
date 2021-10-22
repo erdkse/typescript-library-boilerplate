@@ -18,5 +18,5 @@
         "noImplicitThis": false,
         "strictNullChecks": false
     },
-    "include": ["src/**/*", "__tests__/**/*"]
+    "include": ["index.ts", "src/**/*", "__tests__/**/*"]
 }

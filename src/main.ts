@@ -8,6 +8,4 @@ class Main {
     }
 }
 
-const main = new Main();
-
-main.print('Hello world!');
+export default Main;
