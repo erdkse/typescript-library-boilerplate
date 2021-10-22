@@ -1,7 +1,13 @@
 class Main {
     constructor() {
-        console.log('Hello World!');
+        this.print('Main class initialized!');
+    }
+
+    print(message: string) {
+        console.log(message);
     }
 }
 
-new Main();
+const main = new Main();
+
+main.print('Hello world!');
