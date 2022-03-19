@@ -17,5 +17,7 @@ module.exports = {
         'plugin:jest/recommended',
         'prettier',
     ],
-    rules: {},
+    rules: {
+        '@typescript-eslint/ban-ts-comment': 'off',
+    },
 };

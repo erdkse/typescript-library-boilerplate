@@ -6,13 +6,18 @@
         "start": "node build/index.js",
         "clean": "rimraf coverage build tmp",
         "prebuild": "npm run lint",
-        "build": "tsc --declaration -p tsconfig.release.json",
-        "build:watch": "tsc -w -p tsconfig.release.json",
+        "build": "npm run clean && npm run tsc:build && npm run browserify",
+        "build:watch": "npm run clean && concurrently \"npm run tsc:watch\" \"npm run browserify:watch\"",
+        "tsc:build": "tsc --declaration -p tsconfig.release.json",
+        "tsc:watch": "tsc -w -p tsconfig.release.json",
+        "browserify": "wait-on tmp/index.js && browserify tmp/index.js -o build/index.js",
+        "browserify:watch": "wait-on tmp/index.js && npm run browserify && watchify ./tmp/index.js -o ./build/index.js",
         "lint": "eslint . --ext .ts,.tsx",
         "test": "jest --coverage",
         "test:watch": "jest --watch",
+        "test:e2e": "npm run build && cpy ./build/index.js ./example/ && cypress run",
         "docs": "typedoc index.ts --name \"Sample SDK\" --includeVersion",
-        "release:patch": "standard-version --release-as patch",
+        "release:patch": "standard-version --release-as patch --prerelease dev",
         "release:minor": "standard-version --release-as minor",
         "release:major": "standard-version --release-as major"
     },
@@ -24,6 +29,8 @@
         "@types/node": "16.11.3",
         "@typescript-eslint/eslint-plugin": "5.1.0",
         "@typescript-eslint/parser": "5.1.0",
+        "browserify": "^17.0.0",
+        "concurrently": "^7.0.0",
         "eslint": "8.0.1",
         "eslint-config-prettier": "8.3.0",
         "eslint-plugin-jest": "25.2.2",
@@ -35,6 +42,8 @@
         "ts-node": "^10.4.0",
         "tsutils": "3.21.0",
         "typedoc": "0.22.6",
-        "typescript": "4.4.4"
+        "typescript": "4.4.4",
+        "wait-on": "^6.0.1",
+        "watchify": "^4.0.0"
     }
 }
