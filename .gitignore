@@ -12,6 +12,7 @@ coverage
 # Transpiled files
 build
 tmp
+dist
 
 # VS Code
 !.vscode/tasks.js
@@ -29,3 +30,5 @@ tmp
 .DS_Store
 
 docs
+
+.env

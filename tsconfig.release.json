@@ -2,7 +2,7 @@
     "extends": "./tsconfig.json",
     "compilerOptions": {
         "rootDir": ".",
-        "outDir": "tmp",
+        "outDir": "dist",
         "removeComments": true,
         "sourceMap": false,
         "declaration": true
