@@ -20,7 +20,15 @@ export default class Main {
      * @param message  Comment for parameter ´message´.
      * @returns Comment for special return value.
      */
-    print(message: string): void {
+    public print(message: string): void {
+        console.log(`[${NODE_ENV}]: ${message}`);
+    }
+
+    /**
+     * @param message  Comment for parameter ´message´.
+     * @returns Comment for special return value.
+     */
+    public static printGlobal(message: string): void {
         console.log(`[${NODE_ENV}]: ${message}`);
     }
 }
