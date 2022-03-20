@@ -2,7 +2,8 @@ const dotenv = require('dotenv');
 const webpack = require('webpack');
 const path = require('path');
 const FileManagerPlugin = require('filemanager-webpack-plugin');
-const NpmDtsPlugin = require('npm-dts-webpack-plugin');
+const DtsBundleWebpack = require('dts-bundle-webpack');
+const packageJson = require('./package.json');
 
 dotenv.config();
 
@@ -61,9 +62,10 @@ module.exports = {
                 },
             },
         }),
-        new NpmDtsPlugin({
-            output: 'index.d.ts',
-            root: 'build',
+        new DtsBundleWebpack({
+            name: packageJson.name,
+            out: 'index.d.ts',
+            main: 'build/index.d.ts',
         }),
     ],
 };
