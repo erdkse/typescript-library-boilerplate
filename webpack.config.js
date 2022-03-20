@@ -2,6 +2,7 @@ const dotenv = require('dotenv');
 const webpack = require('webpack');
 const path = require('path');
 const FileManagerPlugin = require('filemanager-webpack-plugin');
+const NpmDtsPlugin = require('npm-dts-webpack-plugin');
 
 dotenv.config();
 
@@ -13,7 +14,14 @@ module.exports = {
         rules: [
             {
                 test: /\.tsx?$/,
-                use: 'ts-loader',
+                use: [
+                    {
+                        loader: 'ts-loader',
+                        options: {
+                            configFile: 'tsconfig.release.json',
+                        },
+                    },
+                ],
                 exclude: /node_modules/,
             },
         ],
@@ -39,7 +47,23 @@ module.exports = {
                 onStart: {
                     delete: [path.join(__dirname, 'build')],
                 },
+                onEnd: {
+                    copy: [
+                        {
+                            source: path.join(__dirname, 'package.json'),
+                            destination: path.join(
+                                __dirname,
+                                'build',
+                                'package.json',
+                            ),
+                        },
+                    ],
+                },
             },
+        }),
+        new NpmDtsPlugin({
+            output: 'index.d.ts',
+            root: 'build',
         }),
     ],
 };
