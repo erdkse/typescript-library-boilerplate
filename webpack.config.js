@@ -11,7 +11,7 @@ dotenv.config();
 module.exports = {
     entry: './index.ts',
     target: 'web',
-    mode: 'development',
+    mode: 'none',
     module: {
         rules: [
             {

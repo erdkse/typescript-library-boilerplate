@@ -4,6 +4,7 @@
     "main": "index.ts",
     "scripts": {
         "start": "node build/index.js",
+        "dev": "webpack --watch",
         "prebuild": "npm run lint",
         "build": "webpack",
         "lint": "eslint src --ext .ts,.tsx",
